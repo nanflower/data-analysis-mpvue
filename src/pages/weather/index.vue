@@ -114,6 +114,10 @@ export default {
         options: options
       }
     }
+  },
+  created () {
+  },
+  methods: {
   }
 }
 </script>

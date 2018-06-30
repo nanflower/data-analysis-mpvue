@@ -1,24 +1,22 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
+  <div class="container">
 
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
+    <swiper class="img-swiper" autoplay="true" interval="5000" duration="1000" circular="true" indicator-color="#fff" indicator-dots="true" indicator-active-color="#e9403b">
+      <block v-for="(item, index) in imgUrls" :key="item">
+        <swiper-item>
+          <image :src="item" class="slide-image" @click="" data-id="index"></image>
+        </swiper-item>
+      </block>
+    </swiper>
 
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
+    <ul class="pages-index-items clearfix">
+      <li v-for="(item, index) in serviceList" :key="item.url">
+      <view @click="serviceChoice(index)" class="pages-index-item">
+        <image class="img" :src="item.src" mode="scaleToFill"></image>
+        <view class="pages-index-itemtext">{{ item.name }}</view>
+      </view>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -29,6 +27,47 @@ export default {
   data () {
     return {
       motto: 'Hello World',
+      imgUrls: [
+        '/static/assets/img/game.jpeg',
+        '/static/assets/img/game.jpeg'
+      ],
+      serviceList: [{
+        name: 'airline-safety',
+        src: '/static/assets/img/timg.jpeg',
+        url: '/pages/weather/main'
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }, {
+        name: '荒野之息',
+        src: '/static/assets/img/timg.jpeg',
+        url: ''
+      }],
       userInfo: {}
     }
   },
@@ -38,6 +77,14 @@ export default {
   },
 
   methods: {
+    serviceChoice (index) {
+      console.log(this.serviceList[index].url)
+      if (this.serviceList[index].url) {
+        wx.navigateTo({
+          url: this.serviceList[index].url
+        })
+      }
+    },
     bindViewTap () {
       const url = '../logs/main'
       wx.navigateTo({ url })
@@ -101,5 +148,51 @@ export default {
   padding: 5px 10px;
   color: blue;
   border: 1px solid blue;
+}
+.img-swiper{
+  width: 750rpx;
+  height: 240rpx;
+  display: block;
+}
+.slide-image{
+  width: 750rpx;
+  height: 240rpx;
+  display: block;
+}
+.pages-index-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap:wrap;
+  background-color: #fff;
+}
+.pages-index-items li {
+  box-sizing: border-box;
+  width: 33.3%;
+  height: 250rpx;
+  float: left;
+  background-color: #fff;
+  border-right: 1px solid #f0f0f0; 
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0;
+  margin: 0;
+}
+.pages-index-item {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 250rpx;
+  padding-top: 2rpx;
+}
+.pages-index-item .img {
+  height: 100rpx;
+  width: 100rpx;
+  margin-top: 38rpx;
+}
+.pages-index-itemtext {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  font-weight: normal;
 }
 </style>
