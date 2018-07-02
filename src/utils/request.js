@@ -190,7 +190,18 @@ function eventHandler() {
     }
 
     this._cbs = this._cbs || {}
-    if (this._cbs[event]) this._cbs[event].push(fn)
+    if (!this._cbs[event]) this._cbs[event] = []
+    this._cbs[event].push(fn)
+  }
+
+  proto.un = function (event, fn) {
+    if (typeof fn !== 'function') {
+      console.error('fn must be a function')
+      return
+    }
+
+    this._cbs = this._cbs || {}
+    if (this._cbs[event]) this._cbs[event] = []
   }
 
   proto.emit = function (event) {

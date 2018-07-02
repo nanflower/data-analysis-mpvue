@@ -1,13 +1,12 @@
-let env = 'sit'
 let prefix = ''
 
-if (env === 'sit') {
-  prefix = 'https://oo0oo0oo0.com'
-} else {
-  prefix = 'https://oo0oo0oo0.com'
+if (process.env.NODE_ENV === 'production') {
+  prefix = 'https://0000.com/'
+} else { // development
+  prefix = 'http://0000.com/'
 }
 
 export default {
-  queryWeather: prefix + 'weather/query',
+  queryWeather: prefix + 'eshopwap/mainPage/getIntegralInfo.do',
   query: prefix + ''
 }
