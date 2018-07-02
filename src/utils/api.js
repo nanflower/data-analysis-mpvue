@@ -2,11 +2,12 @@ let env = 'sit'
 let prefix = ''
 
 if (env === 'sit') {
-  prefix = 'http://jisutqybmf.market.alicloudapi.com/'
+  prefix = 'https://oo0oo0oo0.com'
 } else {
-  prefix = 'https://jisutqybmf.market.alicloudapi.com/'
+  prefix = 'https://oo0oo0oo0.com'
 }
 
 export default {
-  queryWeather: prefix + 'weather/query'
+  queryWeather: prefix + 'weather/query',
+  query: prefix + ''
 }

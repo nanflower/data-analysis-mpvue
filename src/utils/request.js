@@ -1,4 +1,4 @@
-import Promise from '../plugins/es6-promise'
+import Promise from 'es6-promise'
 import urls from './api'
 
 let max_request = 5
@@ -127,7 +127,7 @@ function requestQueue() {
   }
 
   // 请求入队列，生成请求标示
-  proto.push = (params) => {
+  proto.push = function (params) {
     params.id = +new Date()
 
     while (this.queue.indexOf(params.id) > -1 || this.loading.indexOf(params.id) > -1) {
@@ -138,7 +138,7 @@ function requestQueue() {
     this.map[params.id] = params
   }
 
-  proto.next = () => {
+  proto.next = function () {
     if (this.queue.length < 1) {
       if (this.loading.length < 1) {
         // 队列为空关闭loading
@@ -162,13 +162,13 @@ function requestQueue() {
 
       this.loading.push(params.id)
       eventEmit.emit('loading', true)
+
       return requestFn(params)
     }
   }
 
-  proto.request = (params) => {
+  proto.request = function (params) {
     this.push(params)
-
     return this.next()
   }
 
@@ -183,7 +183,7 @@ function eventHandler() {
     this._cbs = {}
   }
 
-  proto.on = (event, fn) => {
+  proto.on = function (event, fn) {
     if (typeof fn !== 'function') {
       console.error('fn must be a function')
       return
@@ -193,7 +193,7 @@ function eventHandler() {
     if (this._cbs[event]) this._cbs[event].push(fn)
   }
 
-  proto.emit = (event) => {
+  proto.emit = function (event) {
     this._cbs = this._cbs || {}
     let callbacks = this._cbs[event]
     let args

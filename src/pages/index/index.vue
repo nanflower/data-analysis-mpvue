@@ -34,7 +34,7 @@ export default {
       serviceList: [{
         name: 'airline-safety',
         src: '/static/assets/img/timg.jpeg',
-        url: '/pages/weather/main'
+        url: ''
       }, {
         name: '荒野之息',
         src: '/static/assets/img/timg.jpeg',
@@ -107,6 +107,13 @@ export default {
   },
 
   created () {
+    this.$request('queryWeather', {
+      data: ''
+    }).then(
+      (res) => {
+        console.log(res)
+      }
+    )
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
   }
